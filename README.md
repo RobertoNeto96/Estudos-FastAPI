@@ -112,7 +112,32 @@
     . Após a instalação vamos as configurações do taskipy
         . No arquivo pyproject.toml:
             [tool.taskipy.tasks]
-            lint = 'ruff check'
-            format = 'ruff format'
-            run = 'fastapi dev fast_zero/app.py'
-            test = 'pytest -s -x --cov=fast_zero -vv'        
+            lint = 'ruff check'  ----->  Verifica se há algum erro de sintaxe no codigo
+            format = 'ruff format'  ------>  Formata todo o codigo de acordo com as boas praticas de codigo do Python
+            run = 'fastapi dev fast_zero/app.py'  ------>  Inicia o servidor com o localhost
+            test = 'pytest -s -x --cov=fast_zero -vv' ------>  Testa o codigo, e mostra todo o codigo que foi coberto por esse teste       
+
+. Existem comandos no TaskiPy que rodam antes de outro comando ou após outro comando:
+    . pre_format = 'ruff check --fix' 
+    . pre_test = 'task lint'
+    . post_test = 'coverage html'
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Criação de testes
+
+. Na pasta tests vamos criar um arquivo de testes, e por padrao o nome desse arquivo deve começar com test_ em seguida damos o nome que quisermos, nesse caso vamos testar o arquivo app, entao chamaremos de TEST_APP.PY
+
+. Para testarmos o cliente começamos importando modulos nesse arquivo, sendo eles: 
+    . from fastapi.testclient import TestClient
+    . from fastapi_zero.app import app   --->   Nesse import buscamos nossa variavel app criada no arquivo app dentro da pasta fastapi_zero
+
+. Um teste só pode ser feito dentro de uma função, para isso criamos uma função com o nome da nossa função ja criada la no arquivo app, lembrando que testes devem começar com o nome de test_ , nesse caso a estrutura ficaria da seguinte forma: 
+    . def test_root_deve_retornar_ola_mundo()
+        client = TestClient(app)
+        response = client.get('/')
+        assert response.json() == {'message': 'Olá mundo!'}
+
+. Explicando a estrutura do codigo acima, criamos uma função com o nome da função que ja esta criada no nosso arquivo app, com o nome de root, e em seguida continuamos com um nome intuitivo, no caso test_root_deve_retornar_ola_mundo , em seguida criamos uma variavel para atribuirmos um cliente, com o import do TestClient e dentro dos parenteses colocamos a variavel app que foi criada no arquivo app , após isso criamos outra variavel para atribuirmos uma requisição ao cliente, no caso do tipo GET (pegar) e entre os parenteses colocamos o parametro que é pra ser buscado, no caso a /(barra) , e por final na ultima linha do bloco de codigo definimos atraves do assert que significa que o teste tem que GARANTIR que o resultado retornado seja o mesmo que foi definido apos o sinal de igual (==), nesse caso 'Olá mundo!'
+
+
