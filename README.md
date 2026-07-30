@@ -140,4 +140,6 @@ Criação de testes
 
 . Explicando a estrutura do codigo acima, criamos uma função com o nome da função que ja esta criada no nosso arquivo app, com o nome de root, e em seguida continuamos com um nome intuitivo, no caso test_root_deve_retornar_ola_mundo , em seguida criamos uma variavel para atribuirmos um cliente, com o import do TestClient e dentro dos parenteses colocamos a variavel app que foi criada no arquivo app , após isso criamos outra variavel para atribuirmos uma requisição ao cliente, no caso do tipo GET (pegar) e entre os parenteses colocamos o parametro que é pra ser buscado, no caso a /(barra) , e por final na ultima linha do bloco de codigo definimos atraves do assert que significa que o teste tem que GARANTIR que o resultado retornado seja o mesmo que foi definido apos o sinal de igual (==), nesse caso 'Olá mundo!'
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
 
