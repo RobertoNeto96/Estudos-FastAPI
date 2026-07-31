@@ -1,0 +1,17 @@
+# Caches de ferramentas e do Python
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+
+# Relatórios de Cobertura de Testes
+.coverage
+htmlcov/
+
+# Ambiente Virtual
+.venv/
+venv/
+
+# Configurações de IDE
+.vscode/
+.idea/
